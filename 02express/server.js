@@ -5,6 +5,12 @@ const port = 3000;
 const router = express.Router();
 
 app.use(express.json());
+app.use((req, res, next) => {
+    const timestamp = new Date().toISOString();
+    console.log(`${timestamp} ${req.method} ${req.url}`);
+    next();
+})
+
 
 let cars = [
     {id:1, model:'hero', make:'honda', year:'2005'},
